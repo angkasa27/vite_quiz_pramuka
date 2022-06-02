@@ -9,8 +9,8 @@ export default function Welcome({ useUsername, setStage }) {
   return (
     <div className="flex flex-col items-center text-center gap-4 justify-center h-full">
       <h1 className=" mb-4">
-        <span className="text-amber-500">Who </span>
-        am I?
+        Scout <span className="text-amber-500">Fun </span>
+        Quiz
       </h1>
       <Card className="">
         <TextInput
