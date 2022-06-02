@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply overscroll-none font-happy text-base text-slate-800 md:text-lg;
+  @apply overscroll-none font-quicksand;
 }
 
 h1 {
@@ -34,7 +34,15 @@ h1,
 h2,
 h3,
 h4 {
-  @apply font-lato;
+  @apply font-semibold;
+}
+
+h5,
+p,
+a,
+button,
+input {
+  @apply text-sm font-medium md:text-base;
 }
 
 u {

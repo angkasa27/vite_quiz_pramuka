@@ -1,11 +1,16 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     extend: {
       fontFamily: {
-        happy: ['"Happy Monkey"', ...defaultTheme.fontFamily.sans],
+        nunito: ['"Nunito"', ...defaultTheme.fontFamily.sans],
+        quicksand: ['"Quicksand"', ...defaultTheme.fontFamily.sans],
         lato: ['"Lato"', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
@@ -13,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin")],
 };

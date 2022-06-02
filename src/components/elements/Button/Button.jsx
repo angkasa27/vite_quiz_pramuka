@@ -4,85 +4,39 @@ import { motion } from "framer-motion";
 export default function Button({
   children,
   className,
-  type,
   href,
-  onClick,
-  small,
-  responsive,
   nav,
+  disabled,
   ...props
 }) {
-  const [classes, setClasses] = useState("");
-  const defaultClass = " " + " font-semibold tracking-wider ";
-  const buttonSize = () => {
-    switch (true) {
-      case responsive:
-        return " py-1 px-2 md:py-3 md:px-6 ";
-      case small:
-        return " py-1 px-2 ";
-      default:
-        return " py-3 px-6 ";
-    }
-  };
-  const buttonDefault =
-    " outline-none flex items-center justify-center text-base hover:-translate-y-1 " +
-    buttonSize();
-
-  useEffect(() => {
-    switch (type) {
-      case "primary": {
-        setClasses(
-          defaultClass + buttonDefault + "  rounded defaultTransitionAll"
-        );
-        break;
-      }
-      case "text": {
-        setClasses(" defaultTransitionAll");
-        break;
-      }
-      default: {
-        setClasses(
-          defaultClass +
-            buttonDefault +
-            " text-white rounded defaultTransitionAll"
-        );
-        break;
-      }
-    }
-  }, [type]);
+  const disabledClass = disabled
+    ? " text-white font-medium leading-tight rounded-md shadow-md pointer-events-none opacity-60"
+    : " cursor-pointer hover:bg-cyan-600 hover:shadow-lg focus:bg-cyan-600 ";
+  const defaultClass =
+    disabledClass +
+    " bg-cyan-500 inline-block px-6 py-2.5 text-white leading-tight  rounded-md shadow-md  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ";
 
   switch (true) {
-    case !!onClick:
-      return (
-        <motion.button
-          onClick={onClick}
-          className={classes + " " + className}
-          {...props}
-        >
-          {children}
-        </motion.button>
-      );
     case !!href:
       return (
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={classes + " " + className}
+          className={defaultClass + " " + className}
           {...props}
         >
           {children}
         </a>
       );
-    case !!nav:
-      return (
-        <a href={nav} className={classes + " " + className} {...props}>
-          {children}
-        </a>
-      );
     default:
       return (
-        <motion.button className={classes + " " + className} {...props}>
+        <motion.button
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
+          className={defaultClass + " " + className}
+          {...props}
+        >
           {children}
         </motion.button>
       );
